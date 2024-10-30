@@ -23,9 +23,9 @@ const HomePage = () => {
       case "Clouds":
         return ScatterdCloudsImage;
       case "Clear":
-        return ClearSkyImage;
-      case "Snow":
         return SnowImage;
+      case "Snow":
+        return ClearSkyImage;
       case "Thunder":
         return ThunderStormImage;
       case "Fog":
