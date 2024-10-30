@@ -1,17 +1,32 @@
+import { useContext } from "react";
 import SearchIcom from "../../assets/search.svg";
+import { LocationContex } from "../../contex";
+import { getLocationByName } from "./../../data/Location_data";
+import useDebounce from "../../hooks/useDebounce";
 const Search = () => {
+  const { setSelectedLocation } = useContext(LocationContex);
+
+  const doSearch = useDebounce((searchText) => {
+    const fetchLocation = getLocationByName(searchText);
+    setSelectedLocation({ ...fetchLocation });
+  }, 400);
+
+  const handelChange = (event) => {
+    const value = event.target.value;
+    doSearch(value);
+  };
   return (
-    <form action="#">
+    <form>
       <div className="flex items-center space-x-2 py-2 px-3 group focus-within:bg-black/30 transition-all border-b border-white/50 focus-within:border-b-0 focus-within:rounded-md">
         <input
           className="bg-transparent  placeholder:text-white text-white w-full text-xs md:text-base outline-none border-none"
           type="search"
           placeholder="Search Location"
+          onChange={handelChange}
           required
         />
-        <button type="submit">
-          <img src={SearchIcom} />
-        </button>
+
+        <img src={SearchIcom} />
       </div>
     </form>
   );
