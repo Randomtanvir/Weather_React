@@ -14,11 +14,10 @@ const useDebounce = (callback, delay) => {
   const debouncedCallback = (...args) => {
     if (timeOutIdRef.current) {
       clearTimeout(timeOutIdRef.current);
-    } else {
-      setTimeout(() => {
-        callback(...args);
-      }, delay);
     }
+    timeOutIdRef.current = setTimeout(() => {
+      callback(...args);
+    }, delay);
   };
 
   return debouncedCallback;
