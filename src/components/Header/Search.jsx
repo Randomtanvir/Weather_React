@@ -13,7 +13,7 @@ const Search = () => {
   const doSearch = useDebounce((searchText) => {
     const fetchLocation = getLocationByName(searchText);
     setSelectedLocation({ ...fetchLocation });
-  }, 800);
+  }, 500);
 
   const handelChange = (event) => {
     const value = event.target.value;
